@@ -1,61 +1,70 @@
-# Putting it All Together: State and Events
+# ReactTube
 
 ## Learning Goals
 
-- Use state and events to make components dynamic
-- Implement controlled components
+- Train yourself to
+  [Think in React](https://reactjs.org/docs/thinking-in-react.html)
+- Design components based on a mockup
+- Pass down data to components via props
+- Handle user interaction via events
+- Use **state** to trigger changes in the DOM
 
-## Introduction
+## Setup
 
-To build on what you've learned over the course of this section, we'll be
-building out a simple task list app to practice working with state and events,
-focusing in particular on working with arrays.
+Fork and clone this lab. Then, `cd` into the lab directory and run:
+
+```console
+$ npm install
+$ npm start
+```
+
+This will install all the dependencies and run the application in your browser
+at [http://localhost:3000](http://localhost:3000).
+
+There are no tests for this lab, so you'll need to check your work by running
+your application in the browser and trying to match the demo below.
 
 ## Deliverables
 
-There is some starter code built out for all of the components you'll need. The
-data for the application is imported in `App`, so you'll need to pass that data
-down to the components that need it as props.
+Your goal is to build this app from scratch:
 
-Run `npm install` and `npm start`, then check out the starter code in the
-browser. You'll see a console message with the `TASK` and `CATEGORY` data you'll
-need to pass down from `App`.
+![demo](https://curriculum-content.s3.amazonaws.com/phase-2/react-hooks-state-events-pairing/demo.png)
 
-### TaskList
+The application has the following features:
 
-First, we'll want to display all the tasks in our app. Pass down the task data
-from `App` to `TaskList`, and display each task using the `Task` component. Make
-sure to use a `key` prop!
+- When the app loads, display a video along with its details and a list of all
+  the comments
+- When a user clicks on the "👍" button, the number of upvotes for the video
+  should increase
+- When a user clicks on the "👎" button, the number of downvotes for the video
+  should increase
+- When the user clicks the "Hide Comments" button, the comments should be
+  removed from the page, and the button text should change to "Show Comments".
+  When the button is clicked again, it should toggle back to showing the
+  comments.
 
-### Task
+The data you'll need for the app can be found in the `data/video.js` file.
 
-Update the `Task` component so that it shows the task's text and category.
+Start by planning out what components you'll need and draw out your component
+hierarchy. Then, build out your components and pass down any data they need via
+props using the `video` object that's been imported in the `App` component.
 
-_When the delete button is clicked_, the task should be removed from the list.
+Consider what components need to use **state** as you're building out these
+features.
 
-### CategoryFilter
+There's an example of how to embed a video using an `<iframe>` in the `App`
+component. Other than that, you're on your own in terms of how to design each
+part of the application. Don't worry too much about getting the styling to match
+the demo. Focus on functionality.
 
-Pass the list of categories to this component from `App`. Then, update this
-component to display `<button>` elements for each category. In order to pass the test, the buttons will need a key prop equal to the category.
+Good luck!
 
-_When a button is clicked_, the following should happen:
+## Bonus
 
-- Whichever button was clicked should have a class of `selected`. The other
-  buttons should not have any class assigned.
-- The list of tasks being displayed should be filtered, so that only tasks that
-  match the category that was clicked are displayed.
-- If the button for "All" is selected, all the tasks should be displayed.
+If you finish early and want to get more practice with state and events, here
+are some ideas for additional features:
 
-### NewTaskForm
-
-Pass the list of categories to this component from `App`. Then, update this
-component to display `<option>` elements for each category inside of the
-`<select>` element **except** the "All" category, so that the user can select a
-category when adding a new task.
-
-Next, update this form to be a _controlled component_, so that all form inputs
-are captured in state.
-
-_When the form is submitted_, add a new task to the list with the text and
-category from the form. For the tests for this feature to pass, you'll need a
-callback prop named `onTaskFormSubmit` that takes a task object as an argument.
+- Add upvote/downvote buttons to each comment
+- Add a search bar to search comments by username
+- Add a "Remove Comment" button to delete comments from the page
+- Add a sorting feature to sort the comments
